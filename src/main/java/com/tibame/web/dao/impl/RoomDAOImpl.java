@@ -23,8 +23,8 @@ import com.tibame.web.vo.RoomVO;
 
 @Repository
 public class RoomDAOImpl implements RoomDAO {
-	@Autowired
-	private ApplicationContext applicationContext;
+//	@Autowired
+//	private ApplicationContext applicationContext;
 
 	@PersistenceContext
 	private Session session;
@@ -60,7 +60,8 @@ public class RoomDAOImpl implements RoomDAO {
 		query.setParameter("roomTypeId", room.getRoomTypeVO().getRoomTypeId());
 		List<RoomVO> resultList = query.getResultList();
 		for (RoomVO roomVO : resultList) {
-			RoomDTO roomDTO = applicationContext.getBean(RoomDTO.class);
+//			RoomDTO roomDTO = applicationContext.getBean(RoomDTO.class);
+			RoomDTO roomDTO = new RoomDTO();
 			roomDTO.setRoomName(roomVO.getRoomName());
 			roomDTO.setRoomId(roomVO.getRoomId());
 			list.add(roomDTO);
@@ -102,7 +103,8 @@ public class RoomDAOImpl implements RoomDAO {
 
 		allRooms = query2.getResultList();
 		for (RoomVO room : allRooms) {
-			RoomDTO roomDTO = applicationContext.getBean(RoomDTO.class);
+//			RoomDTO roomDTO = applicationContext.getBean(RoomDTO.class);
+			RoomDTO roomDTO = new RoomDTO();
 			roomDTO.setRoomName(room.getRoomName());
 			roomDTO.setRoomId(room.getRoomId());
 			roomDTO.setRoomTypeId(room.getRoomTypeVO().getRoomTypeId());

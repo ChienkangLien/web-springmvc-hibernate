@@ -26,8 +26,8 @@ public class RoomTypeController {
 	@Autowired
 	private RoomTypeService service;
 
-	@Autowired
-	private ApplicationContext applicationContext;
+//	@Autowired
+//	private ApplicationContext applicationContext;
 
 	@PostMapping
 	public Map<String, String> createRoomType(@RequestBody RoomTypeAndPhotoVO roomTypeAndPhotoVO) {
@@ -64,7 +64,8 @@ public class RoomTypeController {
 
 	@GetMapping("/getSingle")
 	public ResponseEntity<RoomTypeDTO> getSingleRoomType(@RequestParam("roomTypeId") Integer roomTypeId) {
-		RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+//		RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+		RoomTypeVO roomType = new RoomTypeVO();
 		roomType.setRoomTypeId(roomTypeId);
 		RoomTypeDTO roomTypeDTO = service.getRoomType(roomType);
 		if (roomTypeDTO != null) {

@@ -19,8 +19,8 @@ import com.tibame.web.vo.RoomTypeVO;
 
 @Repository
 public class RoomTypeDAOImpl implements RoomTypeDAO {
-	@Autowired
-	private ApplicationContext applicationContext;
+//	@Autowired
+//	private ApplicationContext applicationContext;
 
 	@PersistenceContext
 	private Session session;
@@ -74,7 +74,8 @@ public class RoomTypeDAOImpl implements RoomTypeDAO {
 	public RoomTypeDTO findByPrimaryKey(RoomTypeVO type) {
 		RoomTypeVO vo = this.getSession().get(RoomTypeVO.class, type.getRoomTypeId());
 		if (vo != null) {
-			RoomTypeDTO dto = applicationContext.getBean(RoomTypeDTO.class);
+//			RoomTypeDTO dto = applicationContext.getBean(RoomTypeDTO.class);
+			RoomTypeDTO dto = new RoomTypeDTO();
 			dto.setRoomStatus(vo.getRoomStatus());
 			dto.setRoomTypeName(vo.getRoomTypeName());
 			dto.setRoomDescription(vo.getRoomDescription());
@@ -97,7 +98,8 @@ public class RoomTypeDAOImpl implements RoomTypeDAO {
 			query2.setParameter("roomTypeId", roomTypeVO.getRoomTypeId());
 			RoomTypeVO result = (RoomTypeVO) query2.uniqueResult();
 
-			RoomTypeDTO roomTypeDTO = applicationContext.getBean(RoomTypeDTO.class);
+//			RoomTypeDTO roomTypeDTO = applicationContext.getBean(RoomTypeDTO.class);
+			RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
 			BeanUtils.copyProperties(roomTypeVO, roomTypeDTO); // 屬性轉換VO -> DTO
 
 			if (result != null) {

@@ -16,8 +16,8 @@ import com.tibame.web.dto.RoomPhotoDTO;
 import com.tibame.web.vo.RoomPhotoVO;
 @Repository
 public class RoomPhotoDAOImpl implements RoomPhotoDAO {
-	@Autowired
-    private ApplicationContext applicationContext;
+//	@Autowired
+//    private ApplicationContext applicationContext;
 	
 	@PersistenceContext
 	private Session session;
@@ -50,7 +50,8 @@ public class RoomPhotoDAOImpl implements RoomPhotoDAO {
 
 		    List<RoomPhotoDTO> dtoList = new ArrayList<>();
 		    for (RoomPhotoVO photoVO : photoList) {
-		        RoomPhotoDTO photoDTO = applicationContext.getBean(RoomPhotoDTO.class);
+//		        RoomPhotoDTO photoDTO = applicationContext.getBean(RoomPhotoDTO.class);
+		        RoomPhotoDTO photoDTO = new RoomPhotoDTO();
 		        photoDTO.setRoomPhotoId(photoVO.getRoomPhotoId());
 		        photoDTO.setRoomPhoto(photoVO.getRoomPhoto());
 		        photoDTO.setRoomTypeId(photoVO.getRoomTypeVO().getRoomTypeId());

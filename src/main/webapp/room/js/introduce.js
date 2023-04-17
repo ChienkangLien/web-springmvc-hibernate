@@ -137,13 +137,13 @@ $(document).ready(function () {
                   let img = `<div class="carousel-item">
                   <img src="data:image/*;base64,${body[i].roomPhoto}" class="d-block w-100" roomPhotoId="${body[i].roomPhotoId}">
                 </div>`;
-                  $(`div[data-insertImg='${body[i].roomTypeId}'`).append(img);
+                  $(`div[data-insertImg='${body[i].roomTypeId}']`).append(img);
                   let imgBtn = `<button type="button" data-bs-target="#carouselExampleIndicators${
                     body[i].roomTypeId
                   }" data-bs-slide-to="${i}" aria-label="Slide ${
                     i + 1
                   }"></button>`;
-                  $(`div[data-insertBtn='${body[i].roomTypeId}'`).append(
+                  $(`div[data-insertBtn='${body[i].roomTypeId}']`).append(
                     imgBtn
                   );
                 }
@@ -267,10 +267,10 @@ $(document).on(
         .then((body) => {
           try {
             if (body.length != null) {
-              $(`select[data-id='${body[0].roomTypeId}'`).empty();
+              $(`select[data-id='${body[0].roomTypeId}']`).empty();
               for (let i = 0; i < body.length; i++) {
                 let option_str = `<option data-room-id='${body[i].roomId}' value='${body[i].roomId}'>${body[i].roomName}</option>`;
-                $(`select[data-id='${body[i].roomTypeId}'`).append(option_str);
+                $(`select[data-id='${body[i].roomTypeId}']`).append(option_str);
               }
             }
           } catch (error) {

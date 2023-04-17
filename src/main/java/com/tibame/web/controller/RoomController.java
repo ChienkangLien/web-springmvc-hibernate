@@ -26,8 +26,8 @@ public class RoomController {
 	@Autowired
 	private RoomService service;
 	
-	@Autowired
-	private ApplicationContext applicationContext;
+//	@Autowired
+//	private ApplicationContext applicationContext;
 
 	@GetMapping("/check")
 	public Map<String, String> checkAva(@RequestParam("startDate") String startDate,
@@ -63,8 +63,10 @@ public class RoomController {
 
 	@GetMapping("/search")
 	public ResponseEntity<List<RoomDTO>> getRoomsByDate(@RequestParam("roomTypeId") String roomTypeId) {
-		RoomVO room = applicationContext.getBean(RoomVO.class);
-		RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+//		RoomVO room = applicationContext.getBean(RoomVO.class);
+		RoomVO room = new RoomVO();
+//		RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+		RoomTypeVO roomType = new RoomTypeVO();
 		room.setRoomTypeVO(roomType);
 		room.getRoomTypeVO().setRoomTypeId(Integer.parseInt(roomTypeId));
 
@@ -89,8 +91,10 @@ public class RoomController {
 		} else {
 			List<RoomVO> newRoomList = new ArrayList<>();
 			for (Map<String, Object> map : data1) {
-				RoomVO room = applicationContext.getBean(RoomVO.class);
-				RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+//				RoomVO room = applicationContext.getBean(RoomVO.class);
+				RoomVO room = new RoomVO();
+//				RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+				RoomTypeVO roomType = new RoomTypeVO();
 				room.setRoomName((String) map.get("roomName"));
 				room.setRoomTypeVO(roomType);
 				room.getRoomTypeVO().setRoomTypeId(Integer.parseInt((String) map.get("roomTypeId")));
@@ -98,7 +102,8 @@ public class RoomController {
 			}
 			List<RoomVO> updateRoomList = new ArrayList<>();
 			for (Map<String, Object> map : data2) {
-				RoomVO room = applicationContext.getBean(RoomVO.class);
+//				RoomVO room = applicationContext.getBean(RoomVO.class);
+				RoomVO room = new RoomVO();
 				room.setRoomName((String) map.get("roomName"));
 				room.setRoomId(Integer.parseInt((String) map.get("roomId")));
 				updateRoomList.add(room);

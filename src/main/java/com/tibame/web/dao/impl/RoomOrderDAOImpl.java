@@ -26,8 +26,8 @@ import com.tibame.web.vo.RoomVO;
 
 @Repository
 public class RoomOrderDAOImpl implements RoomOrderDAO {
-	@Autowired
-	private ApplicationContext applicationContext;
+//	@Autowired
+//	private ApplicationContext applicationContext;
 
 	@PersistenceContext
 	private Session session;
@@ -110,11 +110,16 @@ public class RoomOrderDAOImpl implements RoomOrderDAO {
 		List<Object[]> results = query.list();
 
 		for (Object[] result : results) {
-			RoomOrderVO order = applicationContext.getBean(RoomOrderVO.class);
-			RoomVO roomVO = applicationContext.getBean(RoomVO.class);
-			RoomTypeVO roomTypeVO = applicationContext.getBean(RoomTypeVO.class);
-			MemberVO memberVO = applicationContext.getBean(MemberVO.class);
-			AdministratorVO administratorVO = applicationContext.getBean(AdministratorVO.class);
+//			RoomOrderVO order = applicationContext.getBean(RoomOrderVO.class);
+			RoomOrderVO order = new RoomOrderVO();
+//			RoomVO roomVO = applicationContext.getBean(RoomVO.class);
+			RoomVO roomVO = new RoomVO();
+//			RoomTypeVO roomTypeVO = applicationContext.getBean(RoomTypeVO.class);
+			RoomTypeVO roomTypeVO = new RoomTypeVO();
+//			MemberVO memberVO = applicationContext.getBean(MemberVO.class);
+			MemberVO memberVO = new MemberVO();
+//			AdministratorVO administratorVO = applicationContext.getBean(AdministratorVO.class);
+			AdministratorVO administratorVO = new AdministratorVO();
 
 			order.setRoomOrderId((Integer) result[0]);
 			order.setRoomTypeName((String) result[1]);
@@ -160,9 +165,12 @@ public class RoomOrderDAOImpl implements RoomOrderDAO {
 
 		List<RoomOrderVO> list = new ArrayList<>();
 		for (Object[] row : result) {
-			RoomOrderVO order = applicationContext.getBean(RoomOrderVO.class);
-			MemberVO memberVO = applicationContext.getBean(MemberVO.class);
-			AdministratorVO administratorVO = applicationContext.getBean(AdministratorVO.class);
+//			RoomOrderVO order = applicationContext.getBean(RoomOrderVO.class);
+			RoomOrderVO order = new RoomOrderVO();
+//			MemberVO memberVO = applicationContext.getBean(MemberVO.class);
+			MemberVO memberVO = new MemberVO();
+//			AdministratorVO administratorVO = applicationContext.getBean(AdministratorVO.class);
+			AdministratorVO administratorVO = new AdministratorVO();
 
 			order.setOrderStartDate((Date) row[0]);
 			order.setOrderEndDate((Date) row[1]);
@@ -187,23 +195,25 @@ public class RoomOrderDAOImpl implements RoomOrderDAO {
 
 		List<RoomOrderVO> list = new ArrayList<>();
 		for (Object[] row : result) {
-			RoomOrderVO myVO = applicationContext.getBean(RoomOrderVO.class);
-			RoomVO roomVO1 = applicationContext.getBean(RoomVO.class);
-			myVO.setRoomOrderId((Integer) row[0]);
-			myVO.setRoomTypeName((String) row[1]);
-			myVO.setRoomVO(roomVO1);
-			myVO.getRoomVO().setRoomName((String) row[2]);
-			myVO.setOrderStartDate((Date) row[3]);
-			myVO.setOrderEndDate((Date) row[4]);
-			myVO.setFormattedCreateTimestamp((Timestamp) row[5]);
+//			RoomOrderVO order = applicationContext.getBean(RoomOrderVO.class);
+			RoomOrderVO order = new RoomOrderVO();
+//			RoomVO room = applicationContext.getBean(RoomVO.class);
+			RoomVO room = new RoomVO();
+			order.setRoomOrderId((Integer) row[0]);
+			order.setRoomTypeName((String) row[1]);
+			order.setRoomVO(room);
+			order.getRoomVO().setRoomName((String) row[2]);
+			order.setOrderStartDate((Date) row[3]);
+			order.setOrderEndDate((Date) row[4]);
+			order.setFormattedCreateTimestamp((Timestamp) row[5]);
 			if ((Timestamp) row[6] != null) {
-				myVO.setFormattedChangeTimestamp((Timestamp) row[6]);
+				order.setFormattedChangeTimestamp((Timestamp) row[6]);
 			}
-			myVO.setOrderResident((String) row[7]);
-			myVO.setOrderPrice((Integer) row[8]);
-			myVO.setOrderRemark((String) row[9]);
-			myVO.getRoomVO().setRoomId((Integer) row[10]);
-			list.add(myVO);
+			order.setOrderResident((String) row[7]);
+			order.setOrderPrice((Integer) row[8]);
+			order.setOrderRemark((String) row[9]);
+			order.getRoomVO().setRoomId((Integer) row[10]);
+			list.add(order);
 		}
 		return list;
 	}
@@ -211,7 +221,8 @@ public class RoomOrderDAOImpl implements RoomOrderDAO {
 	@Override
 	public RoomOrderDTO getByOrderId(Integer orderId) {
 		RoomOrderVO roomOrderVO = this.getSession().get(RoomOrderVO.class, orderId);
-		RoomOrderDTO roomOrderDTO = applicationContext.getBean(RoomOrderDTO.class);
+//		RoomOrderDTO roomOrderDTO = applicationContext.getBean(RoomOrderDTO.class);
+		RoomOrderDTO roomOrderDTO = new RoomOrderDTO();
 		roomOrderDTO.setRoomOrderId(roomOrderVO.getRoomOrderId());
 		roomOrderDTO.setOrderStartDate(roomOrderVO.getOrderStartDate());
 		roomOrderDTO.setOrderEndDate(roomOrderVO.getOrderEndDate());

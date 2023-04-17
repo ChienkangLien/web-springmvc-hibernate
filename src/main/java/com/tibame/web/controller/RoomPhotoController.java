@@ -27,8 +27,8 @@ public class RoomPhotoController {
 	@Autowired
 	private RoomPhotoService service;
 
-	@Autowired
-	private ApplicationContext applicationContext;
+//	@Autowired
+//	private ApplicationContext applicationContext;
 
 	@GetMapping
 	public ResponseEntity<List<RoomPhotoDTO>> getRoomPhotos(@RequestParam Integer id) {
@@ -52,8 +52,10 @@ public class RoomPhotoController {
 		} else {
 			List<RoomPhotoVO> newPhotoList = new ArrayList<>();
 			for (Map<String, Object> map : data1) {
-				RoomPhotoVO photo = applicationContext.getBean(RoomPhotoVO.class);
-				RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+//				RoomPhotoVO photo = applicationContext.getBean(RoomPhotoVO.class);
+				RoomPhotoVO photo = new RoomPhotoVO();
+//				RoomTypeVO roomType = applicationContext.getBean(RoomTypeVO.class);
+				RoomTypeVO roomType = new RoomTypeVO();
 				photo.setRoomPhoto((String) map.get("roomPhoto"));
 				photo.setRoomTypeVO(roomType);
 				photo.getRoomTypeVO().setRoomTypeId(Integer.parseInt((String) map.get("roomTypeId")));
@@ -62,7 +64,8 @@ public class RoomPhotoController {
 
 			List<RoomPhotoVO> removePhotoList = new ArrayList<>();
 			for (Map<String, Object> map : data2) {
-				RoomPhotoVO photo = applicationContext.getBean(RoomPhotoVO.class);
+//				RoomPhotoVO photo = applicationContext.getBean(RoomPhotoVO.class);
+				RoomPhotoVO photo = new RoomPhotoVO();
 				photo.setRoomPhotoId(Integer.parseInt((String) map.get("roomPhotoId")));
 				removePhotoList.add(photo);
 			}

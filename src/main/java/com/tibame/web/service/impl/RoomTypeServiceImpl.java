@@ -17,8 +17,8 @@ import com.tibame.web.vo.RoomTypeVO;
 @Service
 @Transactional
 public class RoomTypeServiceImpl implements RoomTypeService {
-	@Autowired
-	private ApplicationContext applicationContext;
+//	@Autowired
+//	private ApplicationContext applicationContext;
 	@Autowired
 	private RoomTypeDAO typeDao;
 	@Autowired
@@ -82,7 +82,8 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 		RoomTypeVO roomTypeVO = typeDao.findByRoomTypeName(roomType);
 		Integer roomTypeId = roomTypeVO.getRoomTypeId();
 		for (int i = 0; i < roomPhotoVO.size(); i++) {
-			RoomTypeVO roomTypeVO2 = applicationContext.getBean(RoomTypeVO.class);
+//			RoomTypeVO roomTypeVO2 = applicationContext.getBean(RoomTypeVO.class);
+			RoomTypeVO roomTypeVO2 = new RoomTypeVO();
 			roomPhotoVO.get(i).setRoomTypeVO(roomTypeVO2);
 			roomPhotoVO.get(i).getRoomTypeVO().setRoomTypeId(roomTypeId);
 			insertResultCount = photoDao.insert(roomPhotoVO.get(i));
