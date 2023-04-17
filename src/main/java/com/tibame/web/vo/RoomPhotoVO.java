@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "ROOM_PHOTO")
 @Component
-@Scope(scopeName = "prototype")
+//@Scope(scopeName = "prototype")
 public class RoomPhotoVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

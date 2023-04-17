@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "ADMINISTRATOR")
 @Component
-@Scope(scopeName = "prototype")
+//@Scope(scopeName = "prototype")
 public class AdministratorVO {
 	@Id
 	@Column(name = "ADMIN_ID")

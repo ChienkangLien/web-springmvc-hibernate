@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "MEMBER")
 @Component
-@Scope(scopeName = "prototype")
+//@Scope(scopeName = "prototype")
 public class MemberVO {
 	@Id
 	@Column(name = "USER_ID")
